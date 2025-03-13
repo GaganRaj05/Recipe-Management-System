@@ -1,0 +1,15 @@
+.Recipe-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    padding: 20px; 
+}
+
+.Recipe-container .card {
+    width: 100%; 
+}
+
+.Recipe-container .card img {
+    object-fit: cover; 
+    height: 200px; 
+}

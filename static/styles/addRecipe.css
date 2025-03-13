@@ -1,0 +1,19 @@
+.add-your-recipes {
+    display: flex;
+}
+.recipe-form form {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-form form * {
+    margin: 5px;
+}
+.recipe-form form input {
+    border-radius: 8px;
+}
+.recipe-form form textarea {
+    border-radius: 8px;
+}
+

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body,* {
+    margin: 0;
+    font-family: 'Roboto','Agbalumo';
+}
+.recipe-img-container {
+    height: 500px;
+    width: 100%;
+}
+.recipe-img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipe-description {
+    margin:20px;
+    border-radius: 8px;
+    padding: 50px;
+    border: 1px solid black;
+}
+.prepartion-instructions-ingredients {
+    display: flex;
+    width: 100%;
+}
+.ingredients {
+    width: 40%;
+    padding: 50px;
+    border-radius: 8px;
+    border: 1px solid black;
+    margin: 20px;
+}
+.instructions {
+    padding: 50px;
+    width: 70%;
+    border-radius: 8px;
+    margin: 20px;
+    border: 1px solid black;
+}
