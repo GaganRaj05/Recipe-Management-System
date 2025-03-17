@@ -13,13 +13,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/home.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>  
     <div class="overview">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Chef it up</a>
+                <a class="navbar-brand" href="{{ url_for('home') }}">Recipe Registry</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,40 +43,107 @@
                                 >Your Recipes</a
                             >
                         </li>
-                    </ul>
+                        <li class="nav-item ms-auto"> <a style="margin-left: 800px;" id="logout" href="{{ url_for('logout') }}" class="btn btn-outline-light">Logout</a>
+                        </li>
+                        </ul>
                 </div>
             </div>
         </nav>
     </div>
-
-    <div>
-        <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/09/Gobi-Manchurian.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+    <div class="intro">
+        <div>
+            <p>Find your Recipe's Now</p>
+            <a href="{{ url_for('add_recipe') }} " class="btn btn-outline-light">Add your Recipe</a>
+        </div>
     </div>
+    <h1 style="text-align: center;margin-top:50px;">Some of the Recipes Our Users Love</h1>
+
+    <div class="food-info">
+        <div class="food-item">
+            <img src="https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2021/10/roasted-tomato-sauce-portion-800x1200.jpg" alt="Pasta">
+            <h3>Italian Pasta</h3>
+            <p>Delicious pasta with tomato sauce and fresh basil.</p>
+        </div>
+        <div class="food-item">
+            <img src="https://content.jdmagicbox.com/comp/udupi/d4/0820px820.x820.170828233152.f2d4/catalogue/sushi-king-mallar-udupi-0c7v31rp2j.jpg" alt="Sushi">
+            <h3>Japanese Sushi</h3>
+            <p>Fresh and flavorful sushi rolls with various fillings.</p>
+        </div>
+        <div class="food-item">
+            <img src="https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg" alt="Burger">
+            <h3>Classic Burger</h3>
+            <p>Juicy burger with all your favorite toppings.</p>
+        </div>
+    </div>
+    <div class="food-facts">
+        <h2>Did You Know?</h2>
+        <p>Eating a variety of colorful fruits and vegetables can provide your body with a wide range of essential nutrients and antioxidants.</p>
+        <p>Cooking with fresh herbs not only enhances the flavor of your dishes but also offers numerous health benefits.</p>
+        <p>Fermented foods like yogurt and kimchi are rich in probiotics, which promote a healthy gut microbiome.</p>
+    </div>
+
+    <div class="chef-testimonials">
+        <h2 style="text-align: center;">What Our Chefs Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Chef 1">
+                <p>"Recipe Registry has revolutionized the way I organize and share my recipes. It's an essential tool for any culinary professional."</p>
+                <h3>Chef John Doe</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Chef 2">
+                <p>"I love how easy it is to discover new recipes and connect with other chefs on this platform. Highly recommended!"</p>
+                <h3>Chef Jane Smith</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Chef 3">
+                <p>"The recipe management features are top-notch, and the community is incredibly supportive. A must-have for any serious cook."</p>
+                <h3>Chef David Lee</h3>
+            </div>
+           
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Chef 2">
+                <p>"I love how easy it is to find and discover new recipes on this platform. Highly recommended!"</p>
+                <h3>Chef Jane Smith</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Chef 3">
+                <p>"Recipe Registry has a vast collection of recipes, making it a valuable resource for both home cooks and professional chefs."</p>
+                <h3>Chef Sarah Johnson</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Chef 4">
+                <p>"The user-friendly interface and search functionality make it easy to find exactly what I'm looking for. I highly recommend it!"</p>
+                <h3>Chef Michael Williams</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/6.jpg" alt="Chef 6">
+                <p>"I've discovered so many new and exciting recipes on this platform. It's a game-changer for my culinary creativity."</p>
+                <h3>Chef Emily Brown</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Chef 7">
+                <p>"The recipe sharing features are excellent. I can easily collaborate with other chefs and share my creations."</p>
+                <h3>Chef Robert Garcia</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Chef 8">
+                <p>"This platform has helped me expand my culinary horizons. I highly recommend it to aspiring and experienced chefs alike."</p>
+                <h3>Chef Jessica Martinez</h3>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Chef 9">
+                <p>"The community aspect of Recipe Registry is fantastic. I've connected with so many talented chefs and learned from their experiences."</p>
+                <h3>Chef William Anderson</h3>
+            </div>
+    
+        </div>
+
+
+    <footer class="footer">
+        <p>&copy; 2024 Recipe Registry. All rights reserved.</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

@@ -70,11 +70,11 @@ def register():
         email = request.form["Email"]
         password = request.form["password"].encode('utf-8')
         cursor = mysql.connection.cursor()
-        cursor.execute("select username,email from Users where username=%s and email=%s", (user_name,email))
+        cursor.execute("select username,email from Users where username=%s or email=%s", (user_name,email))
         result = cursor.fetchone()
         if result:
             print(result)
-            flash("Username taken", "danger")
+            flash("User exists, please enter new username or mail", "danger")
             return redirect(url_for('register'))
         hashed_pw = bcrypt.hashpw(password, bcrypt.gensalt())
         try:
@@ -246,5 +246,14 @@ def edit_recipe(recipe_id):
             flash(f"Some error occured editing your recipes","danger")
             return redirect(url_for('your_recipes'))
             
+@app.route('/logout')
+def logout():
+    session.pop("user_id")
+    session.pop("email")
+    session.pop("password")
+    flash(f"Logout successfull","danger")
+    return redirect(url_for('login'))
+            
+
 if __name__ == "__main__":
     app.run(debug=True)
