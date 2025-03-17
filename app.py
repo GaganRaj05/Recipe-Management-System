@@ -178,6 +178,73 @@ def complete_recipe(recipe_id):
 
 @app.route('/your-recipes')
 def your_recipes():
+    user_id = session.get("user_id")
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute("select Recipe_id, title, description, ingredients,instructions,image_path from Recipes where user_id=%s",(user_id,))
+        db_recipes = cursor.fetchall()
+        if(not db_recipes):
+            flash(f"No recipes found","warning")
+        recipe_list = []
+        for i in db_recipes:
+            recipe_dict = {
+                "recipe_id":i[0],
+                "title":i[1],
+                "description":i[2],
+                "ingredients":i[3],
+                "instructions":i[4],
+                "image_path":i[5]
+            }
+            recipe_list.append(recipe_dict)
+            
+        return render_template("your_recipes.html",recipes = recipe_list)
+        
+    except Exception as e:
+        print(f"{e}")
+        flash(f"some error occured while fetching recipes","danger")
     return render_template("your_recipes.html")
+
+@app.route('/delete-recipe/<int:recipe_id>')
+def delete_recipe(recipe_id):
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute("delete from Recipes where recipe_id=%s",(recipe_id,))
+        mysql.connection.commit()
+        flash(f"Recipe deleted successfully","success")
+        return redirect(url_for('your_recipes'))
+    except Exception as e:
+        print(f"{e}")
+        flash(f"Some error occured while deleting your recipes")
+        return redirect(url_for('your_recipes'))
+    
+@app.route('/edit-recipes/<int:recipe_id>',methods=["GET","POST"])
+def edit_recipe(recipe_id):
+    if request.method == "GET":
+        cursor = mysql.connection.cursor()
+        cursor.execute("select title,description,ingredients,instructions from Recipes where Recipe_id=%s ",(recipe_id,))
+        db_result = cursor.fetchone()
+        recipe_dict = {
+            "title":db_result[0],
+            "description":db_result[1],
+            "ingredients":db_result[2],
+            "instructions":db_result[3]
+        }
+        return render_template("editRecipe.html",recipe=recipe_dict)
+    elif request.method == "POST":
+        title = request.form["title"]
+        description = request.form["description"]
+        ingredients = request.form["ingredients"]
+        instructions = request.form["instructions"]
+        try:
+            cursor = mysql.connection.cursor()
+            cursor.execute("update Recipes set title=%s,description=%s,ingredients=%s,instructions=%s where Recipe_id=%s",(title,description,ingredients,instructions,recipe_id))
+            mysql.connection.commit()
+            flash(f"Recipe updated successfully","success")
+            return redirect(url_for('your_recipes'))
+        except Exception as e:
+            print(f"{e}")
+            flash(f"Some error occured editing your recipes","danger")
+            return redirect(url_for('your_recipes'))
+            
 if __name__ == "__main__":
     app.run(debug=True)

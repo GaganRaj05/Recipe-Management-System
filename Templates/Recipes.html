@@ -1,6 +1,6 @@
 {% with messages = get_flashed_messages(with_categories=true) %} {% if messages
 %} {% for category, message in messages %}
-<div class="alert alert-{{ category }}">{{ message }}</div>
+<div class="alert alert-{{ category }}"  id="flashAlert">{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %}
 
 <!DOCTYPE html>
@@ -68,5 +68,14 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          setTimeout(function() {
+              $("#flashAlert").fadeOut('slow');
+          }, 2000);
+      });
+  </script>
+
   </body>
 </html>
