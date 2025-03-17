@@ -1,6 +1,3 @@
-Here’s a version of the `README.md` file that is optimized for pasting directly into a GitHub repository. It uses GitHub-flavored Markdown and includes placeholders for screenshots and links.
-
-```markdown
 # Recipe Management System
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
